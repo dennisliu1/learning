@@ -1,0 +1,7 @@
+{
+	"name": "learning_nodeJS",
+	"version": "0.0.1",
+	"dependencies": {
+		"npm": "^6.4.1"
+	}
+}

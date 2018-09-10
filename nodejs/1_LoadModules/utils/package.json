@@ -1,0 +1,7 @@
+{
+	"name": "utility_for_mock_server",
+	"version": "0.0.1",
+	"dependencies": {
+		"npm": "^6.4.1"
+	}
+}
