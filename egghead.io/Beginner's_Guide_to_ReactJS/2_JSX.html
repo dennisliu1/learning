@@ -1,0 +1,30 @@
+<html>
+<head>
+
+</head>
+<body>
+
+<div id="root"></div>
+<script type="text/javascript" src="https://unpkg.com/react@16.0.0-rc.3/umd/react.development.js"></script>
+<script type="text/javascript" src="https://unpkg.com/react-dom@16.0.0-rc.3/umd/react-dom.development.js"></script>
+<script type="text/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+<script type="text/babel">
+const rootElement = document.getElementById("root");
+// const element = React.createElement('div', {className: 'container', children: 'hello world'});
+
+const content = "hello world";
+const myClassName = 'container';
+const props = {
+    className: 'container',
+    children: 'hello world'
+}
+// const element = <div className={myClassName + '__is_here'}>{content}</div>
+// const element = <div {...props} />
+const element = <div {...props} className="abc"/>
+console.log(element);
+ReactDOM.render(element, rootElement);
+</script>
+
+</body>
+</html>
+

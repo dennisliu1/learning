@@ -1,0 +1,46 @@
+<html>
+<head>
+
+</head>
+<body>
+<div id="root"></div>
+<script type="text/javascript" src="https://unpkg.com/react@16.0.0-rc.3/umd/react.development.js"></script>
+<script type="text/javascript" src="https://unpkg.com/react-dom@16.0.0-rc.3/umd/react-dom.development.js"></script>
+<script type="text/javascript" src="https://unpkg.com/prop-types@15.6.2/prop-types.js"></script>
+<script type="text/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+<script type="text/babel">
+
+const rootElement = document.getElementById("root");
+
+// method 1: returning with logic
+function Message({message}) {
+    if(message) {
+        return <div>{message}</div>
+    }
+    else {
+        return <div>{React.createElement('div', {}, 'no message')}</div>
+    }
+}
+
+// method 2: returning using turnary logic
+// function Message({message}) {
+//     return ( // <- style; forces JS to not add ; at the end of the line, which becomes return; This forces it to be return (...);
+//         <div>
+//         {message ? ( // <- this parentheses is style only, not really required if its a one liner
+//             <div>{message}</div>
+//         ) : (
+//             React.createElement('div', {}, 'no message')
+//         )}
+//         </div>
+//     );
+// }
+
+ReactDOM.render(
+    <Message message={null} />,
+    rootElement
+)
+</script>
+
+</body>
+</html>
+
