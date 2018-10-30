@@ -1,0 +1,84 @@
+<html>
+<head>
+
+</head>
+<body>
+<div id="root"></div>
+<script type="text/javascript" src="https://unpkg.com/react@16.0.0-rc.3/umd/react.development.js"></script>
+<script type="text/javascript" src="https://unpkg.com/react-dom@16.0.0-rc.3/umd/react-dom.development.js"></script>
+<script type="text/javascript" src="https://unpkg.com/prop-types@15.6.2/prop-types.js"></script>
+<script type="text/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+<script type="text/babel">
+const rootElement = document.getElementById("root");
+
+// has a memory leak; will fix next lesson
+class StopWatch extends React.Component {
+    state = {lapse: 0, running: false}
+
+    constructor(props) {
+        super(props);
+
+    }
+
+    render() {
+        const {lapse, running} = this.state
+
+        const buttonStyles = {
+            border: '1px solid #ccc',
+            background: '#fff',
+            fontSize: '2em',
+            padding: 15,
+            margin: 5,
+            width: 200,
+        }
+
+        return (
+            <div style={{textAlign: 'center'}}>
+                <label style={{fontSize: '5em', display: 'block'}}>{lapse}ms</label>
+                <button style={buttonStyles} onClick={this.handleRunClick} >{running ? 'Stop' : 'Start'}</button>
+                <button style={buttonStyles} onClick={this.handleClearClick} >Clear</button>
+            </div>
+        )
+    }
+
+    // https://stackoverflow.com/questions/33973648/react-this-is-undefined-inside-a-component-function
+    // react does not autobind functions without arrow functions! so use arrow functions or risk "this" being undefined!
+    handleRunClick =  () => {
+        const startTime = Date.now() - this.state.lapse;
+        this.setState(state => {
+            if(state.running) {
+                clearInterval(this.timer);
+            } else {
+                const startTime = Date.now() - this.state.lapse;
+                this.timer = setInterval(() => {
+                    this.setState({lapse: Date.now() - startTime})
+                })
+            }
+            return {running : !state.running}
+        })
+    }
+
+    handleClearClick = () => {
+        this.setState({lapse: 0, running: false});
+        clearInterval(this.timer);
+    }
+
+    // React calls this method each time the component is unmounted (not showing on screen)
+    componentWillUnmount() {
+        clearInterval(this.timer);
+    }
+}
+
+const element = <StopWatch />
+
+ReactDOM.render(
+    element,
+    rootElement
+);
+
+console.log(element);
+
+</script>
+
+</body>
+</html>

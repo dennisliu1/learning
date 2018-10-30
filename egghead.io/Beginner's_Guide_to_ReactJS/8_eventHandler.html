@@ -8,21 +8,42 @@
 <script type="text/javascript" src="https://unpkg.com/react-dom@16.0.0-rc.3/umd/react-dom.development.js"></script>
 <script type="text/javascript" src="https://unpkg.com/prop-types@15.6.2/prop-types.js"></script>
 <script type="text/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
-<style>
-    .box {
-        border-style: solid;
-        border-width: 1px;
-        height: 120px;
-    }
-    .box--small {
-        width: 60px;
-        height: 60px;
-    }
-</style>
 <script type="text/babel">
 const rootElement = document.getElementById("root");
 
-ReactDOM.render(element, rootElement);
+const state = {eventCount: 0, username: ''}
+
+function App() {
+    return (
+        <div>
+            <p>
+                There have been {state.eventCount} events
+            </p>
+            <p>
+                <button onClick={() => setState({eventCount: state.eventCount+1})}></button>
+            </p>
+            <p>
+                You typed: {state.username}
+            </p>
+            <p>
+                <input onChange={event => setState({username: event.target.value,})}/>
+            </p>
+        </div>
+    )
+}
+
+function setState(newState) {
+    Object.assign(state, newState);
+    renderApp();
+}
+
+function renderApp() {
+    ReactDOM.render(
+        <App />,
+        rootElement
+    );
+}
+renderApp();
 
 </script>
 

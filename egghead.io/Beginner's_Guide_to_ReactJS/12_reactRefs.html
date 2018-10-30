@@ -1,0 +1,57 @@
+<html>
+<head>
+
+</head>
+<body>
+<div id="root"></div>
+<script type="text/javascript" src="https://unpkg.com/react@16.0.0-rc.3/umd/react.development.js"></script>
+<script type="text/javascript" src="https://unpkg.com/react-dom@16.0.0-rc.3/umd/react-dom.development.js"></script>
+<script type="text/javascript" src="https://unpkg.com/prop-types@15.6.2/prop-types.js"></script>
+<script type="text/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+<style>
+    .totally-centered {
+        position: absolute;
+        width: 100%;
+        left: 50%;
+        border-width: 1px;
+        border-style: solid;
+    }
+</style>
+<script type="text/babel">
+const rootElement = document.getElementById("root");
+
+class Tilt extends React.Component {
+    componentDidMount() {
+        console.log(this.rootNode)
+    }
+    render() {
+        return (
+            <div
+                ref={node => (this.rootNode = node)}
+                className="tilt-root"
+            >
+                <div className="tilt-child">
+                    <div {...this.props} />
+                </div>
+            </div>
+        )
+    }
+}
+
+const element = (
+    <div className="totally-centered">
+            vanilla-tilt.js
+    </div>
+);
+
+ReactDOM.render(
+    element,
+    rootElement
+);
+
+console.log(element);
+
+</script>
+
+</body>
+</html>

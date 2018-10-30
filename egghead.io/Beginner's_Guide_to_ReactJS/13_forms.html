@@ -1,0 +1,54 @@
+<html>
+<head>
+
+</head>
+<body>
+<div id="root"></div>
+<script type="text/javascript" src="https://unpkg.com/react@16.0.0-rc.3/umd/react.development.js"></script>
+<script type="text/javascript" src="https://unpkg.com/react-dom@16.0.0-rc.3/umd/react-dom.development.js"></script>
+<script type="text/javascript" src="https://unpkg.com/prop-types@15.6.2/prop-types.js"></script>
+<script type="text/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+<style>
+    .totally-centered {
+        position: absolute;
+        width: 100%;
+        left: 50%;
+        border-width: 1px;
+        border-style: solid;
+    }
+</style>
+<script type="text/babel">
+const rootElement = document.getElementById("root");
+
+class NameForm extends React.Component {
+    handleSubmit = event => {
+        event.preventDefault();
+        console.log({target: event.target});
+        console.log(event.target[0].value);
+        console.log(event.target.elements.username.value);
+        console.log(this.inputNode.value);
+    }
+    render() {
+        return (
+            <form onSubmit={this.handleSubmit}>
+                <label>
+                    Name:
+                    <input type="text" name="username" ref={node => (this.inputNode = node)} />
+                </label>
+                <button type="submit">Submit</button>
+            </form>
+        )
+    }
+}
+var element = <NameForm />
+ReactDOM.render(
+    element,
+    rootElement
+);
+
+console.log(element);
+
+</script>
+
+</body>
+</html>
