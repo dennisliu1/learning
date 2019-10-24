@@ -1,0 +1,13 @@
+
+What is React?
+	React is a front end JS library that is designed for fast performance, better templating and rapid prototyping.
+What is an Element?
+	Elements are the HTML DOM elements on a webpage.
+What is a Component?
+	Components are custom HTML elements defined by functions or classes.
+What is a Prop?
+	Props are properties. These are passed into the Component as an argument.
+What is the Component State & Lifecycle?
+
+What is a pure function?
+	A function that does not change it's inputs, and given an input always returns the same output.
