@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: name-of-pod-v3
+  labels:
+    creation_method: manual
+    env: prod
+spec:
+  nodeSelector:
+    gpu: "true"
+  containers:
+  - image: bakedkookies/kubia
+    name: kubia
+    ports:
+    - containerPort: 8080
+      protocol: TCP

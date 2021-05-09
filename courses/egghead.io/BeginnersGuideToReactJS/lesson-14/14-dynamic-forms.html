@@ -1,0 +1,72 @@
+<html>
+<head>
+<script src="https://unpkg.com/react@16.2.0/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16.2.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/prop-types@15.6.0/prop-types.js" ></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script src="https://unpkg.com/vanilla-tilt@1.4.1/dist/vanilla-tilt.min.js"></script>
+<style>
+</style>
+</head> <body> <div id="root"></div> 
+<script type="text/babel">
+class NameForm extends React.Component {
+	state = {error: this.props.getErrorMessage('')} // solution 1. if you use solution 2, change error to null
+	handleSubmit = event => {
+		console.log(this.props.getErrorMessage)
+		event.preventDefault()
+		const value = event.target.elements.username.value
+		const error = this.props.getErrorMessage(value,)
+		if(error) {
+			alert(`error: ${error}`)
+		} else {
+			alert(`sucess: ${value}`)
+		}
+	}
+	handleChange = (event) => {
+		const {value} = event.target // extracts value from event.target
+		this.setState({
+			error: this.props.getErrorMessage(value ),
+		})
+	}
+
+	componentDidMount_solution2() {
+		this.setState({
+			error: this.props.getErrorMessage(''),
+		})
+	}
+
+	render() {
+		const {error} = this.state
+		return (
+			<form  onSubmit={this.handleSubmit}>
+				<label>
+					Name:
+					<input onChange={this.handleChange} name="username" type="text" />
+				</label>
+				{(error) ? <div>{error}</div> : ''}
+				<button disabled={Boolean(error)} type="submit">Submit</button>
+			</form>
+		)
+	}
+}
+const element = <NameForm 
+	getErrorMessage={value => {
+		if(value.length < 3) {
+			return `value must be at least 3 characters, but is only ${value.length}`
+		}
+		else if(!value.includes('s')) {
+			return `value does not include "s" but it should!`
+		}
+	}}
+	/>
+function renderApp() {
+	ReactDOM.render(
+		element,	
+		document.getElementById('root')
+	)
+}
+
+renderApp()
+</script>
+</body>
+</html>

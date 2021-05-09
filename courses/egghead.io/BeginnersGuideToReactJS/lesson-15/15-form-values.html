@@ -1,0 +1,134 @@
+<html>
+<head>
+<script src="https://unpkg.com/react@16.2.0/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16.2.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/prop-types@15.6.0/prop-types.js" ></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script src="https://unpkg.com/vanilla-tilt@1.4.1/dist/vanilla-tilt.min.js"></script>
+<style>
+</style>
+</head> <body> <div id="root"></div> 
+<script type="text/babel">
+class MyFancyForm extends React.Component {
+	static availableOptions = [
+		'apple',
+		'grape',
+		'cherry',
+		'orange',
+		'pear',
+		'peach',
+	]
+	state = {multiline: '', commaseparated: '', multiSelect: []}
+
+	handleCommaSeparatedChange = event => {
+		console.log('handleCommaSeparatedChanged')
+		const {value} = event.target
+		const allVals = value
+			.split(',')
+			.map(v => v.trim())
+			.filter(Boolean)
+
+		this.setState({
+			commaseparated: value,
+			multiline: value
+				.split(',')
+				.map(v => v.trim())
+				.filter(Boolean)
+				.join('\n'),
+			 multiSelect: allVals.filter(v =>
+			 	MyFancyForm.availableOptions.includes(v),
+			)
+		})
+	}
+	handleMultilineChange = event => {
+		console.log('handleMultilineChanged')
+		const {value} = event.target
+		const allVals = value
+			.split('\n')
+			.map(v => v.trim())
+			.filter(Boolean)
+
+		this.setState({
+			multiline: value,
+			commaseparated: value
+				.split('\n')
+				.map(v => v.trim())
+				.filter(Boolean)
+				.join(','),
+			multiSelect: allVals.filter(v =>
+				MyFancyForm.availableOptions.includes(v)
+			)
+		})
+	}
+	handleMultiSelectChange = event => {
+		console.log('handleMultiSelectChanged')
+		const allVals = Array.from(
+			event.target.selectedOptions,
+		).map(o => o.value)
+
+		this.setState({
+			multiSelect: allVals,
+			multiline: allVals.join('\n'),
+			commaseparated: allVals.join(',')
+		})
+	}
+	makeItem(item) {
+		return <option key={item.toString()} >{item}</option>
+	}
+	render() {
+		const {multiline, commaseparated, multiSelect} = this.state
+		return (
+			<form>
+				<div>
+					<label>
+						comma separated values:
+						<br />
+						<input
+							type="text"
+							value={commaseparated}
+							onChange={ this.handleCommaSeparatedChange }
+						/>
+					</label>
+				</div>
+				<div>
+					<label>
+						multiline values:
+						<br />
+						<textarea
+							value={multiline}
+							rows={ MyFancyForm.availableOptions.length }
+							onChange={ this.handleMultilineChange }
+						/>
+					</label>
+				</div>
+				<div>
+					<label>
+						multiSelect values:
+						<br />
+						<select 
+							multiple
+							value={multiSelect}
+							size={ MyFancyForm.availableOptions.length }
+							onChange={ this.handleMultiSelectChange }
+						>
+							{MyFancyForm.availableOptions.map(this.makeItem)}
+						</select>
+					</label>
+				</div>
+			</form>
+		)
+	}
+	
+}
+const element = <MyFancyForm />
+function renderApp() {
+	ReactDOM.render(
+		element,	
+		document.getElementById('root')
+	)
+}
+
+renderApp()
+</script>
+</body>
+</html>

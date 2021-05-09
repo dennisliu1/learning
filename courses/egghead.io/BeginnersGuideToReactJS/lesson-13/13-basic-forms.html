@@ -1,0 +1,45 @@
+<html>
+<head>
+<script src="https://unpkg.com/react@16.2.0/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16.2.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/prop-types@15.6.0/prop-types.js" ></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script src="https://unpkg.com/vanilla-tilt@1.4.1/dist/vanilla-tilt.min.js"></script>
+<style>
+</style>
+</head> <body> <div id="root"></div> 
+<script type="text/babel">
+class NameForm extends React.Component {
+	handleSubmit = event => {
+		event.preventDefault()
+		console.log(event)
+		console.log({target: event.target}) // JS
+		console.log(event.target[0].value) // JS
+		console.log(event.target.elements.username.value) // JS
+		console.log(this.inputNode.value) // react 
+	}
+
+	render() {
+		return (
+			<form onSubmit={this.handleSubmit}>
+				<label>
+					Name:
+					<input name="username" type="text" ref={node => (this.inputNode = node)} />
+				</label>
+				<button type="submit">Submit</button>
+			</form>
+		)
+	}
+}
+const element = <NameForm />
+function renderApp() {
+	ReactDOM.render(
+		element,	
+		document.getElementById('root')
+	)
+}
+
+renderApp()
+</script>
+</body>
+</html>

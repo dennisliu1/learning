@@ -1,0 +1,21 @@
+---
+# comment: hosts could be "remote" or "all" as well
+- hosts: remote
+  # connection: remote
+  become: yes
+  # become_user: docker
+  remote_user: den
+  tasks:
+  - name: Install Nginx
+    apt:
+      name: nginx
+      state: installed
+      update_cache: true
+    notify:
+    - Start Nginx
+
+  handlers:
+  - name: Start Nginx
+    service:
+      name: nginx
+      state: started

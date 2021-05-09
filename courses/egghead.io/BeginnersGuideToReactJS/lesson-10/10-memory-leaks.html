@@ -1,0 +1,98 @@
+<html>
+<head>
+<script src="https://unpkg.com/react@16.2.0/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16.2.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/prop-types@15.6.0/prop-types.js" ></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<style>
+.button-styles {
+	border: '1px solid #ccc',
+	background: '#fff',
+	fontSize: '2em',
+	padding: 15,
+	margin: 5,
+	width: 200,
+}
+
+</style>
+</head> <body> 
+
+	<!-- this doesn't actually show, seems ShadowDOM.render overrides everything -->
+	<div id="top-input">
+		Show Stop Watch
+		<input type="checkbox" onclick="showStopWatch();" />
+	</div>
+	<div id="root"></div> 
+<script type="text/babel">
+class StopWatch extends React.Component {
+	state = {lapse: 0, running: false}
+
+	handleRunClick = () => {
+		this.setState(state => {
+			if(state.running) {
+				clearInterval(this.timer)
+			} else {
+				const startTime = Date.now() - this.state.lapse
+				this.timer = setInterval(() => {
+					this.setState({
+						lapse: Date.now() - startTime,
+					}, 
+					() => {
+						console.log(this.state.lapse)
+					}
+					)
+				})
+			}
+			return {running: !state.running}
+		})
+		const startTime = Date.now() - this.state.lapse
+		
+	}
+
+	handleClearClick = () => {
+		clearInterval(this.timer)
+		this.setState({lapse: 0, running: false})
+	}
+
+
+	componentWillUnmount() {
+		// clearInterval(this.timer)
+	}
+
+	render() {
+		const buttonStyles = {
+			border: '1px solid #ccc',
+			background: '#fff',
+			fontSize: '2em',
+			padding: 15,
+			margin: 5,
+			width: 200,
+		}
+		const {lapse, running} = this.state
+		return (
+			<div style={{textAlign: 'center'}} >
+				<label style={{fontSize: '5em', display: 'block'}} >
+					{lapse}ms
+				</label>
+				
+				<button style={buttonStyles} onClick={this.handleRunClick} >
+					{running ? 'Stop' : 'Start'}
+				</button>
+				<button style={buttonStyles} onClick={this.handleClearClick} >Clear</button>
+			</div>
+		)
+	}
+}
+
+const element = <StopWatch lapse={10} running={true} />
+function renderApp() {
+	ReactDOM.render(
+		element,	
+		document.getElementById('root')
+	)
+}
+
+renderApp()
+</script>
+</body>
+</html>

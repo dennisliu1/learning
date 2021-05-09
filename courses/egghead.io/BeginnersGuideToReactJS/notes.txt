@@ -1,0 +1,113 @@
+https://unpkg.com/#/
+https://codesandbox.io/
+https://brew.sh
+https://processingjs.org/referene/parentheses/
+
+
+lesson 1
+	use createElement to create an element
+	exactly the same as JS but a lot cleaner
+	createElement(elementType, props, children1..	)
+	ReactDOM.render(element, rootElement)
+	React Element:
+		props
+			classname
+			children
+		type = div
+	react Element
+		msg = shortcut for a message innerText
+		children = actual children of the element
+
+lesson 2
+	using createElement is slow and tedious, use JSX instead
+	can define embedded elements directly in babel JS script blocks
+	{} = JS code context inside element block; use this to reference variables too
+	<div {...props} /> lets you define elements with props object definition
+
+lesson 3
+	components lets you create custom DOM elements
+	component must be start with Uppercase letter (required by react-dom and Babel)
+lesson 4
+	propTypes = checks if the types passed into a Prop Eleement is valid or not
+	specify as class = use static {definition...}
+	specify as object = propName.propTypes = {definition...}
+lesson 5
+	Props return a JSX object
+	you can use conditionals to decide what to return
+	Babel JSX is simply a shorthand for createElement, just think of it as a nicer syntax to do same thing
+lesson 6
+	ReactDOM re-renders what is on screen only the elements it needs to
+	it also keeps focus on selected elements correctly!
+	compare this to rewriting the entire innerHTML, which loses the focus and does not keep it correctly
+	React's shadow DOM will handle all that heavy lifting for you
+lesson 7
+    styling in react is subtle if not careful
+    1. you can pass inline styles using the keyword style=<stuff> in the JSX template
+    2. style=... sets the style of the element, so to do inheritance of style, use style={{styles: definition, ...<parent styles>}}
+    3. same goes for className
+    4. you can create your own custom elements. The argument is an object with the JSX element arguments you give it.
+lesson 8
+	event triggers can happen on the shadow DOM
+	so every time a change occurs, rerender
+	and because the rerender is at the React Shadow DOM level, it is seamless
+lesson 9
+	 1. you can create class component elements in React
+	 2. there is a state object variable you can use to track the state of the object
+	 3. use setState to make changes to the object
+	 4. to create a new class component, extend React.Component
+	 5. implement render() function inside the class to display the element. Works the same as a function element.
+lesson 10
+	the previous lesson has a memory leak
+	if the component is hidden from view, the interval will still try and update the component (it doesn't exist though!)
+	The correct solution is to stop the interval if the component is hidden
+	Solution: in the React.Component class, there is a function called componentWillUnmount(). This will be called when the component is hidden from view. Add your code here to stop stuff that relies on the component in view from running.
+	note that ShadowDOM attaches everything to the root, and handles all the rendering. adding your own DOM elements won't work (not sure how it works fully yet)
+lesson 11
+	class components have the "this" scope problem that JS normally has
+	problem: when using a function, "this" context = element, not "class"
+	solution:
+		1. call function with bind(this) to specifically set "this" context = class
+		2. use arrow function, which sets that automatically
+		3. declare function as variable so you can declare it as anonymous function & call bind() in the assignment
+lesson 12
+	refs allows you to reference DOM elements
+	use on div: <div ref=function(node) { this.classAccessNode = node } ...>
+	this lets you manipulate the DOM directly
+	if you pass ref for a composite component, ref = this
+	use "componentDidMount()" function in class, which calls once the components are done mounting and showing on screen
+lesson 13
+	override the form's "handleSubmit" event to do your own custom logic - otherwise it reloads the page!
+	you can get the value of the inputs via React "ref" or by going through the target return variable from the event handler.
+	use event.preventDefault() in the function to stop the default behavior
+lesson 14
+	so you can use onChange in the form to handle changes to the form based on feedback
+	remember that you can pass values in using "state" of the class
+	to initialize the default state, set it in the "state" variable or in "componentDidMount" function, though the variable solution is better because it's one less draw
+	use null for conditional elements that don't return anything
+	remember also to use "setState" in the "onChange" function to actually update the result - React overrides the user input so nothing shows up otherwise.
+lesson 15
+	problem: how do you sync several input fields together?
+	solution: you need to sync the states of all the input fields using "state" & "onChange" on each item
+		inside each input, use "value" = state variable to store the current input.	
+		store the values of each element in the state variable
+		use "onChange" to sync every state variable
+		remember the previous lesson - you need to also update the changing element's state as well to update the element based on user input
+lesson 16
+	problem: when generating lists in JSX, react needs to have unique IDs for each element so it can track the generated elements correctly
+	solution: use the "key" property in the generated element.
+		the key should be a unique identifier (ID) that makes the element unique. Equal to giving the element an id in HTML.
+		you can sort of make it work with an key={index} sometimes, but its better if the ID is just unique for that element.
+	note that not setting this up correctly will break focus - React will regenerate the element and you will lose focus! Use proper unique IDs with keys to avoid this problem.
+lesson 17
+	problem: how do you make HTTP requests in React?
+	solution: use the componentDidMount() function in the class and override it, make your HTTP request or really async calls there, then set state to update the UI.
+		you can use a library like axios.js, which is a promise based HTTP client for browsers and node.js
+lesson 18
+	you can deploy your apps to something like netlify (frontend deployment, they take care of backend).
+	Prototype using sandbox.io
+	use React router
+
+
+
+
+export ANSIBLE_STDOUT_CALLBACK=debug

@@ -1,0 +1,8 @@
+---
+# run locally here, yadda yadda yadda
+- hosts: remote
+  # connection: local
+  become: yes
+  remote_user: den
+  roles:
+    - nginx

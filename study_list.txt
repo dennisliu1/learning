@@ -1,0 +1,402 @@
+# Basic Algorithms & Data Structures
+Linear Data Structures
+	Array
+		Static Array
+		Vector Array
+		array of booleans (bitset)
+		bitmask
+		Algorithms
+			Array Rotations
+				array Rotation
+				array Rotation reversal
+				cycling array
+				find rotation count
+				maximum hamming distance (?)
+				split array and add first part to the end (splicing)
+			Arrangement Rearrangement (?)
+			Order Statistics (?)
+			Range Queries (?)
+			Sort
+				n^2
+					bubble sort
+					selection sort
+					insert sort
+				nlogn
+					merge sort
+					heap sort
+					quick sort
+				special
+					counting sort
+					radix sort
+					bucket sort
+			Search
+				n = Linear
+				logn = binary
+				1 = hashing
+	linked list
+		Singly Linked List
+			insert a node
+			delete a node for given key
+			delete a node at position
+			delete a linked list
+			search for node (iterative, recursive)
+			get length
+			search for a node given a key
+			detect loop
+			swap pair
+			reverse a linked list
+			multi-pointer looping (?)
+		Circular Linked List
+			traversal
+			insert node
+			delete node
+			get node
+			check if linked list is Circular
+			convert binary tree -> circular doubly linked list
+			singly linked list -> circular linked list
+		Doubly Linked List
+			traversal
+			insert node
+			delete node
+			get node
+			swap node
+			reverse list
+			insert node into sorted list
+	stack
+		implementations
+			two stacks in 1 array
+			stack using queue(s)
+			stack using deque
+			stack using priority queue or heap
+		Algorithms
+			get arbitary element
+			reverse stack via recursion
+			reverse stack
+			sort via recursion
+			sort with temporary stack
+			delete arbitary element
+			prefix <-> infix <-> postfix conversion
+	queue
+		implementation
+			queue via stacks
+			LRU cache
+			queue via linked list
+			implement queues with array
+			deque via circular array
+			queue via deque
+		Algorithms
+			reversing a queue
+			reversing a queue w/ recursion
+			reverse first k elements in queue
+			sort a queue w/o extra space
+	deque
+		implementation
+			deque via circular array
+			deque via doubly linked list
+Non-Linear data structures
+	Binary Tree
+		implementation
+			via linked list
+			via array (level order)
+			via array (preorder/postorder traversal generated)
+			Ternary Tree (?)
+			Continuous Tree (?)
+			Expression Tree (?)
+		algorithms
+			Breadth First Search
+			Depth First Search
+			traversal
+				preorder
+				inorder
+				postorder
+				Level order traversal (breadth)
+				morris traversal for preorder
+				boundary traversal
+			tree isomorphism problem
+			get tree height
+			get num of nodes
+	Balanced Binary Search Tree
+		AVL
+			algorithms?
+				Rotations
+		RB
+			algorithms?
+		Threaded Binary Tree (?)
+		algorithms
+			binary search
+	Heap (priority queue)
+		min heap
+		max heap
+		algorithms
+			heapify
+	Hash Table
+		implementation
+			index mapping (trivial hashing)
+			separate chaining with linked lists
+			separate chaining with vector
+			open addressing
+			double hashing
+		hashing properties
+			setting array size N
+			load factoring & rehashing
+		hashing functions
+			perfect hash function
+			dynamic perfect hashing
+			minimal perfect hash function
+			hashing uniformly distributed data
+			hashing data with other distributions
+			hashing variable length data
+			rolling hash
+			universal hashing
+			hashing with checksum functions
+			multiplicative hashing
+			efficient hashing of strings
+			jenkins hash
+			zobrist hashing
+		collision resolution
+			coalesced hashing
+			cukoo hashing
+			hopscotch hashing
+Other Data Structures
+	Graph
+		Adjacency Matrix
+		Adjacency List
+		Edge List
+	Implicit Graph
+		2D grid map
+		chess board
+	Union-Find Disjoint Set
+	Segment tree (used for dynamic range queries)
+		Range Minimum Query problem
+	Binary Indexed (Fenwick) Tree
+# problem solving & data structure applications
+problem solving
+	Brute Force (Complete search)
+		iterative
+		recursive (with backtracking)
+		tips
+			filtering vs generating
+			prune infeasible/inferior search space early
+			utilize symmetries
+			pre-calculation
+			try solving the problem backwards
+	Divide & Conquer
+		general steps
+			binary search = canonical usage
+			binary search on uncommon data structures
+			bisection method
+			binary search the answer
+	Greedy Approach
+		general steps
+			problem has optimal sub-structures & a greedy property
+		use cases
+			classic use (coin change)
+			load balancing
+			interval covering
+			sort the input first
+			single source shortest path on minimum spanning tree
+				Kruskal's algorithm 
+				Prim's algorithm
+			huffman codes
+			fractional knapsack
+			job scheduling
+			canonical problems??
+	Dynamic Programming
+		general steps
+			recursive backtracking
+			memoization
+			bottom-up or top-down
+		identification
+			problem has optimal sub-structures
+			problem has overlapping sub-structures
+		solution
+			top-down
+			bottom-up
+		displaying solution
+			print value of optimal solution = easy, just return final value
+			print optmal solution (path)
+		classical examples
+			Max 1D Range Sum
+			Max 2D range Sum
+			Longest increasing subsequence
+			0-1 knapsack (subset sum)
+			coin change - the general version
+			travelling salesman problem
+		non-classical examples
+			...
+	Graph
+		Graph Traversal
+			Depth First Search
+			Breadth First Search
+			Finding Connected Components (undirected graph)
+			Flood fill - labeling/coloring the connected components
+			topological sort (directed acyclic graph)
+			bipartite graph check
+			graph edges property check via DFS spanning tree
+			finding articulaton points and bridges (undirected graph)
+			finding strongly connected components (directed graph)
+		minimum spanning tree
+			overview
+			kruskal's algorithm
+			prim's algorithm
+			Other uses
+				"maximum" spanning tree
+				"minimum" spanning subgraph
+				minimum "spanning forest
+		single source shortest paths
+			overview
+			SSSP on unweighted graph
+			SSSP on weighted graph
+			SSSP on Graph with negative weight cycle
+		all-pairs shortest paths
+			overview
+			Floyd warshall's algorithm
+			other applications
+				solving SSSP on a small weighted graph
+				printing the shortest paths
+				transitive closure (warshall's algorithm)
+				minimax and maximin 
+				finding the cheapest/negative cycle
+				finding the diameter of a graph
+				finding the SCCs of a directed graph
+		network flow
+			overview
+			max flow
+				ford fulkerson's method
+				edmonds karp algorithm
+			flow graph modeling
+			other applications
+				minimum cut
+				multi-source/multi-sink
+				vertex capacities
+		special graphs
+			directed acyclic graph
+				overview
+				single source shortest/longest paths on DAG
+				counting paths in DAG
+				bottom-up vs top-down implementations
+				converting general graph into DAG
+					Minimum vertex cover on a tree
+				high correlation to Dynamic Programming techniques
+			tree
+				overview
+				tree traversal
+				finding articulation points and bridges in Tree
+				single-soruces shortest paths on weighted tree
+				all-pairs shortest paths on weighted tree
+				diameter of weighted tree
+			eulerian graph
+				overview
+				eulerian graph check
+				printing euler tour
+			bipartite graph
+				overview
+				max cardinality bipartite matching (MCBM) and its max flow solution
+				max independent set and min vertex cover on bipartite graph
+				augmenting path algorithm for max cardinality bipartite matching
+String processing
+	basic string processing skills
+	ad hoc string processing problems
+	string matching
+		KMP algorithm
+		string matching in a 2D grid
+	string processing with DP
+		string alignment (edit distance)
+		longest common subsequence
+		non classical string processing with DP
+	suffix Trie/Tree/Array
+		suffix Trie & applications
+		suffix tree & applications
+		suffix array & applications
+# math
+Mathematics
+	Combinatorics
+		Fibonacci Numbers
+		Binomial Coefficients
+		Catalan Numbers
+	Number Theory
+		Prime Numbers
+		GCD & LCM
+		Factorial
+		Finding prime factors with optimized trial divisions
+		Working with prime factors
+		modified sieve
+		modulo arithmetic
+		extended euclid: solving linear diophantine equation
+	probability theory
+	cycle finding
+		flyod's cycle-finding algorithm
+	game theory
+		decision tree
+		optimizations
+		nim game
+(computational) geometry
+	basic geometry objects
+		0D objects: points
+		1D objects: lines
+		2D objects: circles
+		2D objects: triangles
+		2D objets: quadrilaterals
+	algorithms
+		polygon representation
+		perimeter of a polygon
+		area of a polygon
+		checking if a polygon is convex
+		checkif a point is inside a polygon
+		cutting polygon with a straight line
+		finding the convex hull of a set of points
+# advanced & rare topics
+advanced topics
+	8.2 More Advanced Search Techniques
+		8.2.1 Backtracking with Bitmask
+		8.2.2 Backtracking with Heavy Pruning
+		8.2.3 State-Space Search with BFS or Dijkstra’s
+		8.2.4 Meet in the Middle (Bidirectional Search)
+		8.2.5 Informed Search: A* and IDA*
+	8.3 More Advanced DP Techniques
+		8.3.1 DP with Bitmask
+		8.3.2 Compilation of Common (DP) Parameters
+		8.3.3 Handling Negative Parameter Values with Offset Technique
+		8.3.4 MLE? Consider Using Balanced BST as Memo Table
+		8.3.5 MLE/TLE? Use Better State Representation
+		8.3.6 MLE/TLE? Drop One Parameter, Recover It from Others
+	8.4 Problem Decomposition
+		8.4.1 Two Components: Binary Search the Answer and Other
+		8.4.2 Two Components: Involving 1D Static RSQ/RMQ
+		8.4.3 Two Components: Graph Preprocessing and DP
+rare topics
+	9.1 2-SAT Problem
+	9.2 Art Gallery Problem
+	9.3 Bitonic Traveling Salesman Problem
+	9.4 Bracket Matching
+	9.5 Chinese Postman Problem
+	9.6 Closest Pair Problem
+	9.7 Dinic’s Algorithm
+	9.8 Formulas or Theorems
+	9.9 Gaussian Elimination Algorithm
+	9.10 Graph Matching
+	9.11 Great-Circle Distance
+	9.12 Hopcroft Karp’s Algorithm
+	9.13 Independent and Edge-Disjoint Paths
+	9.14 Inversion Index
+	9.15 Josephus Problem
+	9.16 Knight Moves
+	9.17 Kosaraju’s Algorithm
+	9.18 Lowest Common Ancestor
+	9.19 Magic Square Construction (Odd Size)
+	9.20 Matrix Chain Multiplication
+	9.21 Matrix Power
+	9.22 Max Weighted Independent Set
+	9.23 Min Cost (Max) Flow
+	9.24 Min Path Cover on DAG
+	9.25 Pancake Sorting
+	9.26 Pollard’s rho Integer Factoring Algorithm
+	9.27 Postfix Calculator and Conversion
+	9.28 Roman Numerals
+	9.29 Selection Problem
+	9.30 Shortest Path Faster Algorithm
+	9.31 Sliding Window
+	9.32 Sorting in Linear Time
+	9.33 Sparse Table Data Structure
+	9.34 Tower of Hanoi
+	9.35 Chapter Notes

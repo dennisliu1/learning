@@ -1,0 +1,28 @@
+<html>
+<head>
+<script src="https://unpkg.com/react@16.2.0/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16.2.0/umd/react-dom.development.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/javascript">
+/*
+
+
+ReactDOM.render(element, insertionPointElement)
+
+*/
+const rootElement = document.getElementById('root');
+
+const element = React.createElement(
+    'div',
+    {
+        className: 'container',
+        children: ["hello!", "world!"]
+    }
+);
+ReactDOM.render(element, rootElement);
+
+</script>
+</body>
+</html>

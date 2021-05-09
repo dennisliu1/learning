@@ -1,0 +1,87 @@
+<html>
+<head>
+<script src="https://unpkg.com/react@16.2.0/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16.2.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/prop-types@15.6.0/prop-types.js" ></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<style>
+.button-styles {
+	border: '1px solid #ccc',
+	background: '#fff',
+	fontSize: '2em',
+	padding: 15,
+	margin: 5,
+	width: 200,
+}
+
+</style>
+</head> <body> <div id="root"></div> 
+<script type="text/babel">
+class Counter extends React.Component {
+
+	constructor(...args) {
+		super(...args)
+		this.state = {count: 0}
+		this.handleClick_broken = this.handleClick_broken.bind(this) // solution 1
+		this.handleClick_broken = this.handleClick // solution 2
+		this.handleClick_broken = this.handleClick2 // solution 3
+	}
+
+	handleClick_broken() {
+		this.setState(
+			({count}) => ({
+				count: count + 1,
+			})
+		)
+	}
+	handleClick = function() {
+		this.setState(
+			({count}) => ({
+				count: count + 1,
+			})
+		)
+	}.bind(this)
+	handleClick2 = () => {
+		this.setState(
+			({count}) => ({
+				count: count + 1,
+			})
+		)
+	}
+
+	render_broken() {
+		return (
+			<button
+				onClick={() => 
+					this.setState(
+						({count}) => ({
+							count: count + 1,
+						})
+					)
+				}
+			>
+				{this.state.count}
+			</button>
+		)
+	}
+	render() {
+		return (
+			<button
+				onClick={this.handleClick_broken} >
+				{this.state.count}
+			</button>
+		)
+	}
+}
+const element = <Counter />
+function renderApp() {
+	ReactDOM.render(
+		element,	
+		document.getElementById('root')
+	)
+}
+
+renderApp()
+</script>
+</body>
+</html>
